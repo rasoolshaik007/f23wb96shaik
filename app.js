@@ -45,21 +45,21 @@ console.log("Connection to DB succeeded")})
 async function recreateDB(){
   
 await flight.deleteMany();
-let instance1 = new flight({flight_name:"angerLove", flight_author:"vivekanandha", flight_pages:233});
+let instance1 = new flight({name:"Air India",cost:5000,baggage:46});
 instance1.save().then(doc=>{
 console.log("First object saved")}
 ).catch(err=>{
 console.error(err)
 });
 
-let instance2 = new flight({flight_name:"angerLove", flight_author:"vivekanandha", flight_pages:233});
+let instance2 = new flight({name:"Emirates",cost:6000,baggage:72});
 instance2.save().then(doc=>{
 console.log("Second object saved")}
 ).catch(err=>{
 console.error(err)
 });
 
-let instance3 = new flight({flight_name:"wings of freedom", flight_author:"abdul kalam", flight_pages:103});
+let instance3 = new flight({name:"Indigo",cost:4000,baggage:52});
 instance3.save().then(doc=>{
 console.log("Third object saved")}
 ).catch(err=>{

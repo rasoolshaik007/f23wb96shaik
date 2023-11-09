@@ -1,8 +1,21 @@
 var flight = require('../models/flight');
+
 // List of all flights
-exports.flight_list = function(req, res) {
-res.send('NOT IMPLEMENTED: flight list');
+exports.flight_list = async function(req, res) {
+ try{
+ theflights = await flight.find();
+ res.send(theflights);
+ }
+ catch(err){
+ res.status(500);
+ res.send(`{"error": ${err}}`);
+ } 
 };
+
+// List of all flights
+// exports.flight_list = function(req, res) {
+// res.send('NOT IMPLEMENTED: flight list');
+// };
 // for a specific flight.
 exports.flight_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: flight detail: ' + req.params.id);

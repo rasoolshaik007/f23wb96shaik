@@ -1,5 +1,24 @@
 extends layout
 
 block content
-  h1= title
-  
+    div(class="container-fluid")
+    h1= title
+    - let results=[{name:"Air India",cost:5000,baggage:46},{name:"Emirates",cost:6000,baggage:72},{name:"Indigo",cost:4000,baggage:52}]
+    div(class="row")
+        each form,item in results
+            div(class="col-sm-2", onclick=`buy(${item})`) #{form.name}
+            div(class="col-sm-2", onclick=`buy(${item})`) #{form.cost}
+            div(class="col-sm-2", onclick=`buy(${item})`) #{form.baggage}
+
+    h5= 'buy'
+
+    div(class="container-fluid")
+      each flight,index in results
+        div(class="row", onclick=`buy(${index})`)
+          div(class="col-sm-2") <br>AirLines Name #{index}: #{flight.name} <br>Cost:#{flight.cost} <br> Baggages:#{flight.baggage}
+
+    script.
+        function buy(itemNo)
+        {
+            alert(`You purchased Item ${itemNo+1}`)
+        }
