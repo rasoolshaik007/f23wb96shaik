@@ -1,9 +1,6 @@
 var express = require('express');
+const flight_controlers= require('../controllers/flight');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('flight', { title: 'Search Results Flights' });
-});
-
+/* GET flights */
+router.get('/', flight_controlers.flight_view_all_Page );
 module.exports = router;

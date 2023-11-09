@@ -12,6 +12,20 @@ exports.flight_list = async function(req, res) {
  } 
 };
 
+// VIEWS
+// Handle a show all view
+exports.flight_view_all_Page = async function(req, res) {
+    try{
+    theflights = await flight.find();
+    res.render('flight', { title: 'flight Search Results', results: theflights });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+
+
 // List of all flights
 // exports.flight_list = function(req, res) {
 // res.send('NOT IMPLEMENTED: flight list');
