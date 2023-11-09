@@ -25,6 +25,27 @@ exports.flight_view_all_Page = async function(req, res) {
     }
     };
 
+    // Handle flight create on POST.
+    exports.flight_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new flight();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"flight_type":"goat", "cost":12, "size":"large"}
+    document.flight_name = req.body.flight_name;
+    document.cost = req.body.cost;
+    document.baggage = req.body.baggage;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+
 
 // List of all flights
 // exports.flight_list = function(req, res) {
@@ -35,9 +56,9 @@ exports.flight_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: flight detail: ' + req.params.id);
 };
 // Handle flight create on POST.
-exports.flight_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: flight create POST');
-};
+// exports.flight_create_post = function(req, res) {
+// res.send('NOT IMPLEMENTED: flight create POST');
+// };
 // Handle flight delete form on DELETE.
 exports.flight_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: flight delete DELETE ' + req.params.id);
