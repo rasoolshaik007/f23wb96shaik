@@ -1,7 +1,8 @@
 const mongoose = require("mongoose")
 const flightSchema = mongoose.Schema({
-    flight_type: String,
-    size: String,
-    cost: Number
+    flight_name: String,
+    cost: Number,
+    baggage: Number
+    
 })
 module.exports = mongoose.model("flight", flightSchema)
