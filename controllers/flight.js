@@ -81,7 +81,32 @@ failed`);
 }
 };
     
-    
+// Handle Flight delete on DELETE.
+exports.flight_delete = async function(req, res) {
+console.log("delete " + req.params.id)
+try {
+result = await flight.findByIdAndDelete( req.params.id)
+console.log("Removed " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": Error deleting ${err}}`);
+}
+};
+      
+// Handle a show one view with id specified by query
+exports.flight_view_one_Page = async function(req, res) {
+console.log("single view for id " + req.query.id)
+try{
+result = await flight.findById( req.query.id)
+res.render('flightdetail',
+{ title: 'flight Detail', toShow: result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
 
 // List of all flights
 // exports.flight_list = function(req, res) {
@@ -95,9 +120,9 @@ failed`);
 // res.send('NOT IMPLEMENTED: flight create POST');
 // };
 // Handle flight delete form on DELETE.
-exports.flight_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: flight delete DELETE ' + req.params.id);
-};
+//exports.flight_delete = function(req, res) {
+//res.send('NOT IMPLEMENTED: flight delete DELETE ' + req.params.id);
+//};
 // Handle flight update form on PUT.
 /*exports.flight_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: flight update PUT' + req.params.id);
