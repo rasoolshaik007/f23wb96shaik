@@ -3,8 +3,8 @@ block content
   h1= title
   - let flightid = toShow._id
   - let flight_name  = toShow.flight_name
-  - let flightcost = toShow.flight_cost
-  - let flightsize = toShow.flight_baggage 
+  - let flight_cost = toShow.cost
+  - let flight_baggage = toShow.baggage 
   div
     div.row
       div(class='flightAttr mr-3') flight ID is:
@@ -14,7 +14,7 @@ block content
       div #{flight_name}
     div.row
       div(class='flightAttr mr-3') flight cost is:
-      div #{flightcost}
+      div #{flight_cost}
     div.row
       div(class='flightAttr mr-3') flight baggage  is:
-      div #{flightbaggage}
+      div #{flight_baggage}
