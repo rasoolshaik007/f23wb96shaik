@@ -1,24 +1,41 @@
 extends layout
-
+ 
 block content
-    div(class="container-fluid")
-    h1= title
-    - let result=results 
-    div(class="row")
-        each form,item in results
-            div(class="col-sm-2", onclick=`buy(${item})`) #{form.name}
-            div(class="col-sm-2", onclick=`buy(${item})`) #{form.cost}
-            div(class="col-sm-2", onclick=`buy(${item})`) #{form.baggage}
+  h1= title
+  - let items = results;
+ 
+  div(class="container-fluid")
+    div(class="row m-1")
+      each item in items
+        - let destination = `dispatch("/flight/update?id=${item._id}")`
+        div(class="row-sm-2 m-1") Item #{item.flight_name}(#{item.cost}) is #{item.baggage}
+        button.btn(class="btn-primary ml-1", onclick=destination) Update
+ 
+  script.
+    function dispatch(path) {
+      window.location.href = path;
+    }
+//- extends layout
 
-    h5= 'buy'
+//- block content
+//-     div(class="container-fluid")
+//-     h1= title
+//-     - let result=results 
+//-     div(class="row")
+//-         each form,item in results
+//-             div(class="col-sm-2", onclick=`buy(${item})`) #{form.name}
+//-             div(class="col-sm-2", onclick=`buy(${item})`) #{form.cost}
+//-             div(class="col-sm-2", onclick=`buy(${item})`) #{form.baggage}
 
-    div(class="container-fluid")
-      each flight,index in results
-        div(class="row", onclick=`buy(${index})`)
-          div(class="col-sm-2") <br>AirLines Name #{index}: #{flight.name} <br>Cost:#{flight.cost} <br> Baggages:#{flight.baggage}
+//-     h5= 'buy'
 
-    script.
-        function buy(itemNo)
-        {
-            alert(`You purchased Item ${itemNo+1}`)
-        }
+//-     div(class="container-fluid")
+//-       each flight,index in results
+//-         div(class="row", onclick=`buy(${index})`)
+//-           div(class="col-sm-2") <br>AirLines Name #{index}: #{flight.name} <br>Cost:#{flight.cost} <br> Baggages:#{flight.baggage}
+
+//-     script.
+//-         function buy(itemNo)
+//-         {
+//-             alert(`You purchased Item ${itemNo+1}`)
+//-         }

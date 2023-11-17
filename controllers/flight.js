@@ -60,25 +60,22 @@ res.send(`{"error": document for id ${req.params.id} not found`);
 
 //Handle flight update form on PUT.
 exports.flight_update_put = async function(req, res) {
-console.log(`update on id ${req.params.id} with body
-${JSON.stringify(req.body)}`)
-try {
-let toUpdate = await flight.findById( req.params.id)
-// Do updates of properties
-if(req.body.flight_name) toUpdate.flight_name = req.body.flight_name;
-if(req.body.cost) toUpdate.cost = req.body.cost;
-if(req.body.baggage) toUpdate.baggage = req.body.baggage;
-if(req.body.checkboxbaggage) toUpdate.baggage = true;
-else toUpdate.same = false;
-    
-let result = await toUpdate.save();
-console.log("Sucess " + result)
-res.send(result)
-} catch (err) {
-res.status(500)
-res.send(`{"error": ${err}: Update for id ${req.params.id}
-failed`);
-}
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await flight.findById( req.params.id)
+        // Do updates of properties
+        if(req.body.flight_name) toUpdate.flight_name = req.body.flight_name;
+        if(req.body.cost) toUpdate.cost = req.body.cost;
+        if(req.body.baggage) toUpdate.baggage = req.body.baggage;    
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+        failed`);
+    }
 };
     
 // Handle Flight delete on DELETE.

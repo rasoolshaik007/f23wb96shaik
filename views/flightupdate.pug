@@ -11,19 +11,19 @@ block content
     div.mr-1 ID is
     div #{flightid}
 
-  - let actionid = "/resource/flights/" + flightid
+  - let actionid = "/resource/flight/" + flightid
   form(id='flightForm', action= actionid, method="PUT")
     div.form-group
       label.flightAttr(for='flight_name') flight name
-      input#flight_type(type='text', name='flight_name', value= flight_name )
+      input#flight_name(type='text', name='flight_name', value= flight_name )
 
     div.form-group
       label.flightAttr(for='cost') flight cost
-      input#size(type='number', name='cost', value= flight_cost )
+      input#cost(type='number', name='cost', value= flight_cost )
 
     div.form-group
       label.flightAttr(for='baggage') flight bagagge
-      input#cost(type='number', name='bagagge', value= flight_bagagge )
+      input#baggage(type='number', name='bagagge', value= flight_bagagge )
 
     input(type="submit")
 
@@ -35,7 +35,7 @@ block content
         method: 'PUT',
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form
       }).then((resp) => {
-        return resp.text(); //or whatever the server sends
+        return resp.json(); //or whatever the server sends
       }).then((body) => {
         alert("Update succeeded")
         // TODO handle body

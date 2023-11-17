@@ -10,7 +10,7 @@ block content
     - let flight_name = toShow.flight_name
     - let flight_cost = toShow.cost
     - let flight_baggage = toShow.baggage
-    - let actionid = "/resource/flights/" + flightid
+    - let actionid = "/resource/flight/" + flightid
 
     script.
       let actionid = "#{actionid}"
@@ -51,7 +51,7 @@ block content
           return resp.text(); //or whatever the server sends
         }).then((body) => {
           alert("Delete succeeded")
-          window.location.href='/flights'
+          window.location.href='/flight'
           // TODO handle body
         }).catch((error) => {
           // TODO handle error
