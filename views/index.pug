@@ -1,16 +1,28 @@
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   p Welcome to pug
+//-   p I love playing chess.
+//-   button(type="button", class="btn btn-success",onclick="goFaster()") Press
+//-   div(id="faster") Increase the speed
+//-   script.
+//-     var mph=20;
+//-     var change=1
+//-     function goFaster(){
+//-       mph=mph+change;
+//-       change=change+1;
+//-       document.getElementById('faster').textContent=`MPH ${mph} with change ${change}`
+//-     }
 extends layout
 
 block content
-  h1= title
-  p Welcome to pug
-  p I love playing chess.
-  button(type="button", class="btn btn-success",onclick="goFaster()") Press
-  div(id="faster") Increase the speed
-  script.
-    var mph=20;
-    var change=1
-    function goFaster(){
-      mph=mph+change;
-      change=change+1;
-      document.getElementById('faster').textContent=`MPH ${mph} with change ${change}`
-    }
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/flight") Take me to flight
+    br
+    a(href="/logout") Logout

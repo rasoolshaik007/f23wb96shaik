@@ -1,20 +1,26 @@
 extends layout
- 
+
 block content
   h1= title
   - let items = results;
- 
+  button.btn(class="btn-success", onclick=`dispatch("/flight/create")`) Create
   div(class="container-fluid")
     div(class="row m-1")
       each item in items
-        - let destination = `dispatch("/flight/update?id=${item._id}")`
-        div(class="row-sm-2 m-1") Item #{item.flight_name}(#{item.cost}) is #{item.baggage}
-        button.btn(class="btn-primary ml-1", onclick=destination) Update
- 
+        //- let destination = `dispatch("/flight/update?id=${item._id}")`
+        div(class="row-sm-2 m-1")
+          button.btn(class="btn-primary ml-1", onclick=`dispatch("/flight/update?id=${item._id}")`) Update
+          button.btn(class="btn-success ml-1", onclick=`dispatch("/flight/delete?id=${item._id}")`) Delete
+          button.btn(class="btn-info ml-1", onclick=`dispatch("/flight/detail?id=${item._id}")`) Detail
+          p Name is #{item.flight_name}
+          p Cost is #{item.cost}
+          p Baggage is #{item.baggage}
+
   script.
     function dispatch(path) {
       window.location.href = path;
     }
+
 //- extends layout
 
 //- block content

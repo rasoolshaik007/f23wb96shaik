@@ -4,14 +4,14 @@ block content
   h1= title
   form(id='flightForm', action="/resource/flights", method="POST")
     div.form-group
-      label.flightAttr(for='flight_name') flight name
-      input#flight_type(type='text', name='flight_name')    
+      label.flightAttr(for='flight_name') Name
+      input#flight_name(type='text', name='flight_name')    
     div.form-group
-      label.flightAttr(for='cost') flight cost
-      input#size(type='number', name='cost')
+      label.flightAttr(for='cost') Cost
+      input#cost(type='number', name='cost')
     div.form-group
-      label.flightAttr(for='baggage') flight baggage
-      input#cost(type='number', name='baggage')
+      label.flightAttr(for='baggage') Baggage
+      input#baggage(type='number', name='baggage')
     input(type="submit")
 
   script.
@@ -25,6 +25,7 @@ block content
         return resp.text(); // or resp.text() or whatever the server sends
       }).then((body) => {
         alert("Save succeeded");
+        window.location.href='/flight'
         // TODO: handle body
       }).catch((error) => {
         // TODO: handle error

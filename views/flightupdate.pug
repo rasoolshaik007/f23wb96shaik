@@ -14,15 +14,15 @@ block content
   - let actionid = "/resource/flight/" + flightid
   form(id='flightForm', action= actionid, method="PUT")
     div.form-group
-      label.flightAttr(for='flight_name') flight name
+      label.flightAttr(for='flight_name') Name
       input#flight_name(type='text', name='flight_name', value= flight_name )
 
     div.form-group
-      label.flightAttr(for='cost') flight cost
+      label.flightAttr(for='cost') Cost
       input#cost(type='number', name='cost', value= flight_cost )
 
     div.form-group
-      label.flightAttr(for='baggage') flight bagagge
+      label.flightAttr(for='baggage') Bagagge
       input#baggage(type='number', name='bagagge', value= flight_bagagge )
 
     input(type="submit")
@@ -38,6 +38,7 @@ block content
         return resp.json(); //or whatever the server sends
       }).then((body) => {
         alert("Update succeeded")
+        window.location.href='/flight'
         // TODO handle body
       }).catch((error) => {
         // TODO handle error
