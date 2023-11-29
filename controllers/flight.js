@@ -17,7 +17,7 @@ exports.flight_list = async function(req, res) {
 exports.flight_view_all_Page = async function(req, res) {
 try{
 theflights = await flight.find();
-res.render('flight', { title: 'flight Search Results', results: theflights });
+res.render('flight', { title: 'Flight Search Results', results: theflights });
 }
 catch(err){
 res.status(500);
@@ -29,10 +29,6 @@ res.send(`{"error": ${err}}`);
 exports.flight_create_post = async function(req, res) {
 console.log(req.body)
 let document = new flight();
-// We are looking for a body, since POST does not have query parameters.
-// Even though bodies can be in many different formats, we will be picky
-// and require that it be a json object
-// {"flight_type":"goat", "cost":12, "size":"large"}
 document.flight_name = req.body.flight_name;
 document.cost = req.body.cost;
 document.baggage = req.body.baggage;
@@ -69,7 +65,7 @@ exports.flight_update_put = async function(req, res) {
         if(req.body.cost) toUpdate.cost = req.body.cost;
         if(req.body.baggage) toUpdate.baggage = req.body.baggage;    
         let result = await toUpdate.save();
-        console.log("Sucess " + result)
+        console.log("Success " + result)
         res.send(result)
     } catch (err) {
         res.status(500)

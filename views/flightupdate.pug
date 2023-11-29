@@ -4,8 +4,8 @@ block content
   h1= title
   - let flightid = toShow._id
   - let flight_name = toShow.flight_name
-  - let flight_cost = toShow.cost
-  - let flight_baggage = toShow.baggage
+  - let flight_cost = toShow.flight_cost
+  - let flight_baggage = toShow.flight_baggage
 
   div.row(class='mb-2')
     div.mr-1 ID is
@@ -23,7 +23,7 @@ block content
 
     div.form-group
       label.flightAttr(for='baggage') Bagagge
-      input#baggage(type='number', name='bagagge', value= flight_bagagge )
+      input#baggage(type='number', name='baggage', value= flight_baggage )
 
     input(type="submit")
 

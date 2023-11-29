@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  form(id='flightForm', action="/resource/flights", method="POST")
+  form(id='flightForm', action="/resource/flight", method="POST")
     div.form-group
       label.flightAttr(for='flight_name') Name
       input#flight_name(type='text', name='flight_name')    
@@ -22,7 +22,7 @@ block content
         method: 'POST',
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form
       }).then((resp) => {
-        return resp.text(); // or resp.text() or whatever the server sends
+        return resp.json(); // or resp.text() or whatever the server sends
       }).then((body) => {
         alert("Save succeeded");
         window.location.href='/flight'
